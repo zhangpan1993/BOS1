@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+
+
+    <constant name="struts.devMode" value="true" />
+    <package name="basicstruts2" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="BOSLoginInterceptor" class="com.zhangpan.bos.web.filter.BOSLoginInterceptor">
+                <param name="excludeMethods">login</param>
+            </interceptor>
+
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="BOSLoginInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors><!-- 配置需要进行权限控制的页面访问的规则 -->
+        <default-action-ref name="mystack"/>
+
+
+        <global-results>
+            <result name="login" type="redirect">/login.jsp</result>
+        </global-results>
+
+
+        <action name="page_*_*">
+            <result name="success" type="dispatcher">/pages/{1}/{2}.jsp</result>
+        </action>
+
+        <action name="userAction_*" class="com.zhangpan.bos.web.action.UserAction" method="{1}">
+            <result name="home">/pages/common/index.jsp</result>
+            <result name="loginfailure">/login.jsp</result>
+
+        </action>
+
+        <action name="StaffAction_*" class="com.zhangpan.bos.web.action.StaffAction" method="{1}">
+
+                <result name="success">/pages/base/staff.jsp</result>
+        </action>
+
+        <action name="RegionAction_*" class="com.zhangpan.bos.web.action.RegionAction" method="{1}">
+            <result name="success">/pages/base/region.jsp</result>
+
+        </action>
+        
+        <action name="SubareaAction_*" class="com.zhangpan.bos.web.action.SubareaAction" method="{1}">
+
+            <result name="success">/pages/base/subarea.jsp</result>
+        </action>
+
+        </package>
+        </struts>
