@@ -63,6 +63,11 @@
     <!-- 事务注解 -->
     <tx:annotation-driven />
 
-
+    <!--配置远程调用的service-->
+    <bean id="customerService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceInterface" value="com.zhangpan.crm.service.CustomerService"/>
+        <property name="serviceUrl" value="http://localhost:8888/crm/remoting/customer"/>
+        <property name="overloadEnabled" value="true" />
+    </bean>
 
 </beans>

@@ -119,6 +119,11 @@ public class Region  implements java.io.Serializable {
         this.subareas = subareas;
     }
 
+    public String getSubareaid(){
+
+        return this.id;
+    }
+
 	@Override
 	public String toString() {
 		return "Region [id=" + id + ", province=" + province + ", city=" + city + ", district=" + district

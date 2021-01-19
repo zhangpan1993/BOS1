@@ -52,5 +52,9 @@
             <result name="success">/pages/base/subarea.jsp</result>
         </action>
 
+        <action name="DecidedzoneAction_*" class="com.zhangpan.bos.web.action.DecidedzoneAction" method="{1}">
+            <result name="success">/pages/base/decidedzone.jsp</result>
+        </action>
+
         </package>
         </struts>

@@ -1,5 +1,6 @@
 package com.zhangpan.bos.test;
 
+import com.caucho.hessian.client.HessianProxyFactory;
 import com.zhangpan.bos.dao.IUserDao;
 import com.zhangpan.bos.domain.User;
 import com.zhangpan.bos.utils.PinYin4jUtils;
@@ -63,4 +64,7 @@ public class test01 {
 
         System.out.println(jsonArray.toString());
     }
+
+
+
 }

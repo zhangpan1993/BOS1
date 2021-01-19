@@ -44,7 +44,26 @@
 	}
 	
 	function doAssociations(){
-		$('#customerWindow').window('open');
+		var rows = $("#grid").datagrid("getSelections");
+		if (rows.length == 1){
+			$('#customerWindow').window('open');
+
+			var	url = "${pageContext.request.contextPath}/DecidedzoneAction_findnoassociationCustimers";
+
+			$.post(url,function (data) {
+				$("#noassociationSelect").empty();
+				for (var i=0;i<data.length;i++){
+					var item = data[i];
+					$("#noassociationSelect").append("<option value='" + item.id +"'>" + item.name + "</option>");
+
+				}
+			},"json");
+		}else{
+
+			$.messager.alert("提示","未选中或者选中多行","info");
+		}
+
+
 	}
 	
 	//工具栏
@@ -125,7 +144,7 @@
 			pageList: [30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/decidedzone.json",
+			url : "${pageContext.request.contextPath}/DecidedzoneAction_pageQuery.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow

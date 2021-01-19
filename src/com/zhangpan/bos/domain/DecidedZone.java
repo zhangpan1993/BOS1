@@ -73,13 +73,12 @@ public class DecidedZone  implements java.io.Serializable {
     public void setSubareas(Set subareas) {
         this.subareas = subareas;
     }
-   
 
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "DecidedZone{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
