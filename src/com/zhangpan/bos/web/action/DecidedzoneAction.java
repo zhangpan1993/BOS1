@@ -8,6 +8,7 @@ import com.zhangpan.bos.service.IDecidedzoneService;
 import com.zhangpan.bos.web.action.base.BaseAction;
 import com.zhangpan.crm.domain.Customer;
 import com.zhangpan.crm.service.CustomerService;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import sun.awt.image.ImageDecoder;
 
@@ -21,7 +22,12 @@ public class DecidedzoneAction extends BaseAction<DecidedZone> {
 
     @Autowired
     private IDecidedzoneService decidedzoneService;
+
     private String[] subareaid;
+
+    public String[] getSubareaid() {
+        return subareaid;
+    }
 
     public void setSubareaid(String[] subareaid) {
         this.subareaid = subareaid;
@@ -36,19 +42,26 @@ public class DecidedzoneAction extends BaseAction<DecidedZone> {
 
     public String save(){
         decidedzoneService.save(getModel(),subareaid);
-        return "list";
+        return SUCCESS;
     }
+
+
+    //==========================数据分
 
     public void pageQuery() throws IOException{
 
-        PageBean<DecidedZone> pageBean = new PageBean<DecidedZone>();
+        pageBean.setCurrentPage(page);
+        pageBean.setPageSize(rows);
+        DetachedCriteria dc = DetachedCriteria.forClass(DecidedZone.class);
+        pageBean.setDetachedCriteria(dc);
+
         decidedzoneService.pageQuery(pageBean);
         /**
          * 注意事项：
          * 1.需要设置DecidedZone的staff为非懒加载
          * 2.排队DecidedZone中的detachedCriteria,decidedZones,subareas防止循环引用
          * */
-        responseJson(pageBean, new String[]{"currentPage","pageSize","detachedCriteria","decidedZones","subareas"});
+        responseJson(pageBean, new String[]{"currentPage","pageSize","detachedCriteria"});
     }
 
 

@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.*;
-import java.io.Serializable;
-import java.util.List;
+import java.util.Arrays;
 
 @Service
 @Transactional
@@ -27,7 +25,10 @@ public class DecidedzoneServiceImpl extends BaseServiceImpl<DecidedZone> impleme
 
     @Override
     public void save(DecidedZone model, String[] subareaid) {
+
+        System.out.println("model = " + model + ", subareaid = " + Arrays.deepToString(subareaid));
         decidedZoneDao.save(model);
+
         for (String id:subareaid){
 
             Subarea subarea = subareaDao.findById(id);

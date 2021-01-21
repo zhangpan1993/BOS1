@@ -45,7 +45,7 @@
 	
 	function doAssociations(){
 		var rows = $("#grid").datagrid("getSelections");
-		if (rows.length == 1){
+/*		if (rows.length == 1){
 			$('#customerWindow').window('open');
 
 			var	url = "${pageContext.request.contextPath}/DecidedzoneAction_findnoassociationCustimers";
@@ -61,7 +61,21 @@
 		}else{
 
 			$.messager.alert("提示","未选中或者选中多行","info");
-		}
+		}*/
+
+		$('#customerWindow').window('open');
+
+		var	url = "${pageContext.request.contextPath}/DecidedzoneAction_findnoassociationCustimers";
+
+		$.post(url,function (data) {
+			$("#noassociationSelect").empty();
+			for (var i=0;i<data.length;i++){
+				var item = data[i];
+				$("#noassociationSelect").append("<option value='" + item.id +"'>" + item.name + "</option>");
+
+			}
+		},"json");
+
 
 
 	}
@@ -174,6 +188,11 @@
 		$("#btn").click(function(){
 			alert("执行查询...");
 		});
+
+		$("#save").click(function () {
+
+			$("#addDeciedzoneForm").submit();
+		})
 		
 	});
 
@@ -294,7 +313,7 @@
 		</div>
 		
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="addDeciedzoneForm" method="post" action="${pageContext.request.contextPath}/DecidedzoneAction_save.action">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">定区信息</td>
@@ -310,17 +329,17 @@
 					<tr>
 						<td>选择负责人</td>
 						<td>
-							<input class="easyui-combobox" name="region.id"  
+							<input class="easyui-combobox" name="staff.id"
     							data-options="valueField:'id',textField:'name',url:'${pageContext.request.contextPath }/StaffAction_listJson.action'" />
 						</td>
 					</tr>
 					<tr height="300">
 						<td valign="top">关联分区</td>
 						<td>
-							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:'json/decidedzone_subarea.json',fitColumns:true,singleSelect:false">
+							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:'${pageContext.request.contextPath }/SubareaAction_listJson.action',fitColumns:true,singleSelect:false">
 								<thead>  
 							        <tr>  
-							            <th data-options="field:'id',width:30,checkbox:true">编号</th>  
+							            <th data-options="field:'subareaid',width:30,checkbox:true">编号</th>
 							            <th data-options="field:'addresskey',width:150">关键字</th>  
 							            <th data-options="field:'position',width:200,align:'right'">位置</th>  
 							        </tr>  

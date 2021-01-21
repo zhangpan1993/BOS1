@@ -45,7 +45,6 @@ public class SubareaAction extends BaseAction<Subarea> {
 
     public void pageQuery() throws IOException {
 
-        PageBean<Subarea> pageBean = new PageBean<Subarea>();
         pageBean.setPageSize(rows);
         pageBean.setCurrentPage(page);
 

@@ -26,7 +26,11 @@ public class DecidedZoneDaoImpl extends BaseDaoImpl<DecidedZone> implements IDec
 
         //查询的封闭对象
         DetachedCriteria criteria = pb.getDetachedCriteria();
+
+        System.out.println("--------------------= " + pb.getDetachedCriteria() );
+
         criteria.setProjection(Projections.rowCount());
+
         List<Long> list = this.hibernateTemplate.findByCriteria(criteria);
 
         Long total = list.get(0);
@@ -34,6 +38,7 @@ public class DecidedZoneDaoImpl extends BaseDaoImpl<DecidedZone> implements IDec
         criteria.setProjection(null);
 
         List<DecidedZone> decidedZones = this.hibernateTemplate.findByCriteria(criteria,(currentPage-1)*pageSize,pageSize);
+
         pb.setRows(decidedZones);
     }
 

@@ -8,7 +8,7 @@
             <column name="id" length="32" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="decidedZone" class="com.zhangpan.bos.domain.DecidedZone" fetch="select">
+        <many-to-one name="decidedZone" lazy="false" class="com.zhangpan.bos.domain.DecidedZone" fetch="select">
             <column name="decidedzone_id" length="32" />
         </many-to-one>
         <many-to-one name="region" lazy="false" class="com.zhangpan.bos.domain.Region" fetch="select">

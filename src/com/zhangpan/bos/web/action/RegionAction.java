@@ -77,34 +77,16 @@ public class RegionAction extends BaseAction<Region> {
     }
 
     //==========================数据分页
-    private int page;
-    private int rows;
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
     public void pageQuery() throws IOException {
 
-        PageBean<Region> pageBean = new PageBean<Region>();
         pageBean.setCurrentPage(page);
         pageBean.setPageSize(rows);
 
         DetachedCriteria dc = DetachedCriteria.forClass(Region.class);
         pageBean.setDetachedCriteria(dc);
         regionService.pageQuery(pageBean);
-        HttpServletResponse response = ServletActionContext.getResponse();
 
-        response.setContentType("text/json;charset=UTF-8");
-        JsonConfig jc = new JsonConfig();
-        jc.setExcludes(new String[]{"currentPage","pageSize","datachedCriteria","subareas"});
-        JSONObject jb = JSONObject.fromObject(pageBean,jc);
-        response.getWriter().print(jb.toString());
+        responseJson(pageBean, new String[]{"currentPage","pageSize","detachedCriteria","subareas"});
 
     }
 

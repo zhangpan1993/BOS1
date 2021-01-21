@@ -11,17 +11,12 @@
             <column name="id" length="32" />
             <generator class="assigned" />
         </id>
-        <many-to-one lazy="false" name="staff" class="com.zhangpan.bos.domain.Staff" fetch="select">
-            <column name="staff_id" length="32" />
-        </many-to-one>
         <property name="name" type="java.lang.String">
             <column name="name" length="30" />
         </property>
-        <set name="subareas" inverse="true">
-            <key>
-                <column name="decidedzone_id" length="32" />
-            </key>
-            <one-to-many class="com.zhangpan.bos.domain.Subarea" />
-        </set>
+        <many-to-one lazy="false" name="staff" class="com.zhangpan.bos.domain.Staff">
+            <column name="staff_id" length="32" />
+        </many-to-one>
+
     </class>
 </hibernate-mapping>

@@ -2,6 +2,7 @@ package com.zhangpan.bos.web.action.base;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.zhangpan.bos.domain.PageBean;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -16,6 +17,21 @@ import java.util.Collection;
 public abstract class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 
     private T t;
+
+    //=================分页的参数=====================
+    protected int page;
+    protected int rows;
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+    //=================分页的模型 =====================
+    protected PageBean<T> pageBean = new PageBean<T>();
+    //空参构造方法实现t的实例化
 
     public BaseAction(){
         //1.获得父类的参数化类型

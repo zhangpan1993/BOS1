@@ -127,8 +127,7 @@ public class Region  implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "Region [id=" + id + ", province=" + province + ", city=" + city + ", district=" + district
-				+ ", postcode=" + postcode + ", shortcode=" + shortcode + ", citycode=" + citycode + ", subareas="
-				+ subareas + "]";
+				+ ", postcode=" + postcode + ", shortcode=" + shortcode + ", citycode=" + citycode + "]";
 	}
    
 

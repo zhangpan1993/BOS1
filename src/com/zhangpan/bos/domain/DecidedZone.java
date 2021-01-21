@@ -17,7 +17,6 @@ public class DecidedZone  implements java.io.Serializable {
      private String id;
      private Staff staff;
      private String name;
-     private Set subareas = new HashSet(0);
 
 
     // Constructors
@@ -32,11 +31,10 @@ public class DecidedZone  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public DecidedZone(String id, Staff staff, String name, Set subareas) {
+    public DecidedZone(String id, Staff staff, String name) {
         this.id = id;
         this.staff = staff;
         this.name = name;
-        this.subareas = subareas;
     }
 
    
@@ -66,13 +64,6 @@ public class DecidedZone  implements java.io.Serializable {
         this.name = name;
     }
 
-    public Set getSubareas() {
-        return this.subareas;
-    }
-    
-    public void setSubareas(Set subareas) {
-        this.subareas = subareas;
-    }
 
     @Override
     public String toString() {
