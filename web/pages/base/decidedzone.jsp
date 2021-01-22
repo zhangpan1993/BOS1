@@ -44,10 +44,11 @@
 	}
 	
 	function doAssociations(){
-		var rows = $("#grid").datagrid("getSelections");
-/*		if (rows.length == 1){
+		var selectedRows = $("#grid").datagrid("getSelections");
+		if (selectedRows.length == 1){
 			$('#customerWindow').window('open');
-
+			var decidedzoneId = selectedRows[0].id;
+			$('#customerDecidedZoneId').val(decidedzoneId);
 			var	url = "${pageContext.request.contextPath}/DecidedzoneAction_findnoassociationCustimers";
 
 			$.post(url,function (data) {
@@ -58,24 +59,24 @@
 
 				}
 			},"json");
+
+			url1 = '${pageContext.request.contextPath}/DecidedzoneAction_findhasassociationCustomers.action'
+			$.post(url1,{id:decidedzoneId},function (data) {
+				$("#associationSelect").empty();
+				for (var i=0;data.length;i++){
+					//取一行数据
+					var rowData = data[i];
+
+					//动态selected标签添加option、
+					var option = '<option value="'+rowData.id+'">'+rowData.name+'</option>';
+					$('#associationSelect').append(option)
+
+				}
+			})
 		}else{
 
 			$.messager.alert("提示","未选中或者选中多行","info");
-		}*/
-
-		$('#customerWindow').window('open');
-
-		var	url = "${pageContext.request.contextPath}/DecidedzoneAction_findnoassociationCustimers";
-
-		$.post(url,function (data) {
-			$("#noassociationSelect").empty();
-			for (var i=0;i<data.length;i++){
-				var item = data[i];
-				$("#noassociationSelect").append("<option value='" + item.id +"'>" + item.name + "</option>");
-
-			}
-		},"json");
-
+		}
 
 
 	}
@@ -192,6 +193,22 @@
 		$("#save").click(function () {
 
 			$("#addDeciedzoneForm").submit();
+		});
+
+		$("#toRight").click(function () {
+			$("#associationSelect").append($("#noassociationSelect option:selected"));
+		});
+
+		$("#toLeft").click(function () {
+
+			$("#noassociationSelect").append($("#associationSelect option:selected"));
+		})
+
+		$("#associationBtn").click(function () {
+
+			$("#associationSelect option").attr('selected','selected');
+
+			$("#customerForm").submit();
 		})
 		
 	});
@@ -378,7 +395,7 @@
 	<!-- 关联客户窗口 -->
 	<div class="easyui-window" title="关联客户窗口" id="customerWindow" collapsible="false" closed="true" minimizable="false" maximizable="false" style="top:20px;left:200px;width: 400px;height: 300px;">
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form id="customerForm" action="${pageContext.request.contextPath }/decidedzone_assigncustomerstodecidedzone.action" method="post">
+			<form id="customerForm" action="${pageContext.request.contextPath}/DecidedzoneAction_assigncustomerstodecidedzone.action" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="3">关联客户</td>
@@ -389,8 +406,8 @@
 							<select id="noassociationSelect" multiple="multiple" size="10"></select>
 						</td>
 						<td>
-							<input type="button" value="》》" id="toRight"><br/>
-							<input type="button" value="《《" id="toLeft">
+							<input type="button" value="》》》" id="toRight"><br/>
+							<input type="button" value="《《《" id="toLeft">
 						</td>
 						<td>
 							<select id="associationSelect" name="customerIds" multiple="multiple" size="10"></select>

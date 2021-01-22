@@ -9,6 +9,7 @@ import com.zhangpan.bos.web.action.base.BaseAction;
 import com.zhangpan.crm.domain.Customer;
 import com.zhangpan.crm.service.CustomerService;
 import org.hibernate.criterion.DetachedCriteria;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import sun.awt.image.ImageDecoder;
 
@@ -64,6 +65,22 @@ public class DecidedzoneAction extends BaseAction<DecidedZone> {
         responseJson(pageBean, new String[]{"currentPage","pageSize","detachedCriteria"});
     }
 
+    private Integer[] customerIds;
 
+    public void setCustomerIds(Integer[] customerIds) {
+        this.customerIds = customerIds;
+    }
 
+    public String assigncustomerstodecidedzone(){
+
+        customerService.assignCustomersToDecidedZone(customerIds,getModel().getId());
+
+        return SUCCESS;
+    }
+
+    public void findhasassociationCustomers() throws IOException {
+
+        List<Customer> list = customerService.findhasassociationCustomers(getModel().getId());
+        responseJson(list,new String[]{});
+    }
 }

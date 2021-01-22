@@ -56,5 +56,10 @@
             <result name="success">/pages/base/decidedzone.jsp</result>
         </action>
 
+        <action name="NoticebillAction_*" class="com.zhangpan.bos.web.action.NoticebillAction" method="{1}">
+
+            <result name="success">/pages/qupai/noticebill_add.jsp</result>
+        </action>
+
         </package>
         </struts>

@@ -3,10 +3,12 @@ package com.zhangpan.bos.web.action.base;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.zhangpan.bos.domain.PageBean;
+import com.zhangpan.crm.service.CustomerService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -32,6 +34,9 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
     //=================分页的模型 =====================
     protected PageBean<T> pageBean = new PageBean<T>();
     //空参构造方法实现t的实例化
+
+    @Autowired
+    protected CustomerService customerService;
 
     public BaseAction(){
         //1.获得父类的参数化类型
