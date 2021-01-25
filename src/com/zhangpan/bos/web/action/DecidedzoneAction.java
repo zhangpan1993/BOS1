@@ -18,8 +18,7 @@ import java.util.List;
 
 public class DecidedzoneAction extends BaseAction<DecidedZone> {
 
-    @Autowired
-    private CustomerService customerService;
+
 
     @Autowired
     private IDecidedzoneService decidedzoneService;

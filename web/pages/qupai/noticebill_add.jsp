@@ -33,7 +33,6 @@
 		// 对save按钮条件 点击事件
 		$('#save').click(function(){
 			// 对form 进行校验
-			alert("hello world");
 			if($('#noticebillForm').form('validate')){
 				$('#noticebillForm').submit();
 			}
@@ -52,6 +51,7 @@
 			$.post(url,{tel:tel},function (data) {
 
 				console.log(data);
+				$("#decidedzoneId").val(data.decidedzone_id);
 				$("#customerId").val(data.id);
 				$("#customerName").val(data.name);
 				$("#pickaddress").val(data.address);
@@ -73,8 +73,8 @@
 		</div>
 	</div>
 	<div region="center" style="overflow:auto;padding:5px;" border="false">
-		<form id="noticebillForm" action="${pageContext.request.contextPath}/noticebillAction_save.action" method="post">
-			<input type="hidden" name="decidedzoneId">
+		<form id="noticebillForm" action="${pageContext.request.contextPath}/NoticebillAction_save.action" method="post">
+			<input type="hidden" name="decidedzoneId" id="decidedzoneId">
 			<table class="table-edit" width="95%" align="center">
 				<tr class="title">
 					<td colspan="4">客户信息</td>

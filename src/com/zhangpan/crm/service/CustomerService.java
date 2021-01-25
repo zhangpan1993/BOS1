@@ -3,6 +3,7 @@ package com.zhangpan.crm.service;
 
 import java.util.List;
 import com.zhangpan.crm.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 // 客户服务接口 
@@ -17,5 +18,7 @@ public interface CustomerService {
 	public void assignCustomersToDecidedZone(Integer[] customerIds, String decidedZoneId);
 
 	public Customer findCustomerByTelephone(String tel);
+
+	public String findDecidedZoneIdByAddress(String address);
 
 }
