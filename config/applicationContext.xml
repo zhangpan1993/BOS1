@@ -34,6 +34,7 @@
                 /validatecode.jsp* = anon
                 /UserAction_login.action = anon
                 /* = authc
+                page_base_staff = roles["staff"]
             </value>
         </property>
     </bean>
