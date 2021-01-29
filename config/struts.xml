@@ -31,7 +31,7 @@
             <result name="success" type="dispatcher">/pages/{1}/{2}.jsp</result>
         </action>
 
-        <action name="userAction_*" class="com.zhangpan.bos.web.action.UserAction" method="{1}">
+        <action name="UserAction_*" class="com.zhangpan.bos.web.action.UserAction" method="{1}">
             <result name="home">/pages/common/index.jsp</result>
             <result name="loginfailure">/login.jsp</result>
 

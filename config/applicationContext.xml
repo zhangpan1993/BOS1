@@ -23,6 +23,28 @@
         <property name="password" value="${password}"/>
 
     </bean>
+    <!--sping框架整合shiro权限认证-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"></property>
+        <property name="loginUrl" value="/login.jsp"/>
+        <property name="successUrl" value="/pages/common/index.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorize.jsp"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /validatecode.jsp* = anon
+                /UserAction_login.action = anon
+                /* = authc
+            </value>
+        </property>
+    </bean>
+
+    <bean id="realm" class="com.zhangpan.bos.web.realm.BOSRealm"></bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="realm"></property>
+
+    </bean>
+
 
     <!-- spring框架用于整合Hibernate的工厂bean -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
