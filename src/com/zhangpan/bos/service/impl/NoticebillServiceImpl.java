@@ -57,8 +57,6 @@ public class NoticebillServiceImpl extends BaseServiceImpl<Noticebill> implement
 
             workbillDao.save(workbill);
 
-
-
         }else{
 
             entity.setOrdertype("人工");

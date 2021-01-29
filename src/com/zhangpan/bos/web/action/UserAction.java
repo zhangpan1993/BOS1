@@ -4,6 +4,11 @@ package com.zhangpan.bos.web.action;
 import com.zhangpan.bos.domain.User;
 import com.zhangpan.bos.service.IUserService;
 import com.zhangpan.bos.web.action.base.BaseAction;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,17 +34,22 @@ public class UserAction extends BaseAction<User> {
 
         if(serverCheckCode.equalsIgnoreCase(clientCheckCode)){
 
-            User user = userService.login(username,password);
+            Subject subject = SecurityUtils.getSubject();
+            AuthenticationToken token = new UsernamePasswordToken(username,password);
 
-            if (user != null){
-
-                request.getSession().setAttribute("loginUser",user);
-
-                return "home";
-            }else{
-
+            try {
+                subject.login(token);
+            } catch (AuthenticationException e){
                 addActionError("用户名或密码不正确");
+                System.out.println("用户名密码不正确");
             }
+
+            User user = (User) subject.getPrincipal();
+            request.getSession().setAttribute("loginUser",user);
+
+            return "home";
+
+
         }
         return "loginfailure";
     }

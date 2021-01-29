@@ -30,12 +30,27 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
     }
 
     @Override
+    public User findByUsername(String username) {
+        String hql = "FROM User WHERE username=?";
+        List<User> list = hibernateTemplate.find(hql,username);
+        if (list.size() ==1){
+
+            return list.get(0);
+        }
+
+        return null;
+
+    }
+
+    @Override
     public Integer ModifyPassword(String userId, String newPwd) {
 
         String hql = "update User set password=? WHERE id=?";
         int num = hibernateTemplate.bulkUpdate(hql,newPwd,userId);
         return num;
     }
+
+
 
 
 }

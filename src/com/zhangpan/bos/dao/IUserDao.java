@@ -8,6 +8,7 @@ public interface IUserDao extends IBaseDao<User> {
     public User findByEmail(String email);
 
     public User find(String name, String password);
+    public User findByUsername(String username);
 
     public Integer ModifyPassword(String id, String password);
 

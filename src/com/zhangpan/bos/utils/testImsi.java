@@ -172,6 +172,7 @@ public class testImsi {
 
     public static void main(String[] args) {
 
-        System.out.println(getMobileAll("460059020488624"));
+        Log4jUtils.getLogger().debug("笑而不予1");
+        Log4jUtils.getLogger().error("呵呵哒。。。");
     }
 }

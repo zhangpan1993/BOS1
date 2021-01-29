@@ -3,6 +3,7 @@ package com.zhangpan.bos.web.action;
 import com.zhangpan.bos.dao.INoticebillDao;
 import com.zhangpan.bos.domain.Noticebill;
 import com.zhangpan.bos.service.INoticebillService;
+import com.zhangpan.bos.utils.Log4jUtils;
 import com.zhangpan.bos.web.action.base.BaseAction;
 import com.zhangpan.crm.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class NoticebillAction extends BaseAction<Noticebill> {
     public String save(){
 
         noticebillService.save(getModel(),decidedzoneId);
+        Log4jUtils.getLogger().info("数据保存成功");
+
         return SUCCESS;
     }
 
