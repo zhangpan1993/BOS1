@@ -33,8 +33,9 @@
             <value>
                 /validatecode.jsp* = anon
                 /UserAction_login.action = anon
+                /page_base_staff.action = roles["staff"]
                 /* = authc
-                page_base_staff = roles["staff"]
+
             </value>
         </property>
     </bean>
@@ -46,6 +47,13 @@
 
     </bean>
 
+    <!--开启shiro注解-->
+    <!--自动代理-->
+    <bean id="defaultAdvisorAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <property name="proxyTargetClass" value="true"></property>
+    </bean>
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"/>
 
     <!-- spring框架用于整合Hibernate的工厂bean -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">

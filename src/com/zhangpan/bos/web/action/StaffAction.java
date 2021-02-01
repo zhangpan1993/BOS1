@@ -6,6 +6,7 @@ import com.zhangpan.bos.service.IStaffService;
 import com.zhangpan.bos.web.action.base.BaseAction;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class StaffAction extends BaseAction<Staff> {
     @Autowired
     private IStaffService staffService;
 
+    @RequiresPermissions(value = "staff")
     public String save(){
 
         System.out.println(getModel());
