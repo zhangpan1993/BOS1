@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class FunctionServiceImpl extends BaseServiceImpl<Function> implements IFunctionService {
@@ -21,5 +23,9 @@ public class FunctionServiceImpl extends BaseServiceImpl<Function> implements IF
     public void pageQuery(PageBean<Function> pageBean) {
 
         functionDao.pageQuery(pageBean);
+    }
+
+    public  List<Function> findAll() {
+        return functionDao.findall();
     }
 }

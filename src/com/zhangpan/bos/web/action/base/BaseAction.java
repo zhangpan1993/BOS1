@@ -26,6 +26,7 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 
     public void setPage(int page) {
         this.page = page;
+
     }
 
     public void setRows(int rows) {

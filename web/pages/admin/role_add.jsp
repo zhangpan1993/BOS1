@@ -51,7 +51,7 @@
 		};
 		
 		$.ajax({
-			url : '${pageContext.request.contextPath}/json/menu.json',
+			url : '${pageContext.request.contextPath}/FunctionAction_listJson.action',
 			type : 'POST',
 			dataType : 'text',
 			success : function(data) {

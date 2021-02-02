@@ -8,6 +8,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.util.List;
 
 public class FunctionAction extends BaseAction<Function> {
 
@@ -18,6 +19,8 @@ public class FunctionAction extends BaseAction<Function> {
 
     public void pageQuery() throws IOException {
 
+        System.out.println("当前页码:"+page);
+
         pageBean.setCurrentPage(page);
         pageBean.setPageSize(rows);
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Function.class);
@@ -26,6 +29,14 @@ public class FunctionAction extends BaseAction<Function> {
         functionService.pageQuery(pageBean);
         responseJson(pageBean,new String[]{"roles","function","functions","detachedCriteria","currentPage","pageSize"});
 
+    }
+
+
+    public void listJson() throws IOException {
+
+       List<Function> functions = functionService.findAll();
+
+       responseJson(functions,new String[]{"function","functions","roles"});
     }
 
 }

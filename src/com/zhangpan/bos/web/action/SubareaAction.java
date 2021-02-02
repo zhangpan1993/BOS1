@@ -1,6 +1,5 @@
 package com.zhangpan.bos.web.action;
 
-import com.zhangpan.bos.domain.PageBean;
 import com.zhangpan.bos.domain.Subarea;
 import com.zhangpan.bos.service.ISubareaService;
 import com.zhangpan.bos.web.action.base.BaseAction;
@@ -27,7 +26,6 @@ public class SubareaAction extends BaseAction<Subarea> {
         subareaService.save(getModel());
 
         return SUCCESS;
-
     }
 
     //==========================数据分页
