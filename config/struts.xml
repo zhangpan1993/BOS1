@@ -61,5 +61,10 @@
             <result name="success">/pages/qupai/noticebill_add.jsp</result>
         </action>
 
+        <action name="FunctionAction_*" class="com.zhangpan.bos.web.action.FunctionAction" method="{1}">
+
+            <result name="success">/pages/admin/function.jsp</result>
+        </action>
+
         </package>
         </struts>

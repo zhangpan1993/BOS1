@@ -39,7 +39,10 @@
 					}
 				}           
 			],
-			url : '',
+			pagination : true,
+			pageList:[5,10,15],
+			pageSize:10,
+			url : '${pageContext.request.contextPath}/FunctionAction_pageQuery.action',
 			columns : [[
 			  {
 				  field : 'id',
