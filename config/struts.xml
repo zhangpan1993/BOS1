@@ -66,5 +66,10 @@
             <result name="success">/pages/admin/function.jsp</result>
         </action>
 
+        <action name="RoleAction_*" class="com.zhangpan.bos.web.action.RoleAction" method="{1}">
+
+            <result name="success">/pages/admin/function.jsp</result>
+        </action>
+
         </package>
         </struts>

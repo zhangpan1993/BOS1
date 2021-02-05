@@ -20,8 +20,8 @@
         <property name="description" type="java.lang.String">
             <column name="description" />
         </property>
-        <property name="page" type="java.lang.String">
-            <column name="page" />
+        <property name="url_page" type="java.lang.String">
+            <column name="url_page" />
         </property>
         <property name="generatemenu" type="java.lang.String">
             <column name="generatemenu" />

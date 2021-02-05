@@ -20,6 +20,7 @@ public class FunctionAction extends BaseAction<Function> {
     public void pageQuery() throws IOException {
 
         System.out.println("当前页码:"+page);
+        System.out.println("当前显示数量："+rows);
 
         pageBean.setCurrentPage(page);
         pageBean.setPageSize(rows);

@@ -19,7 +19,7 @@ public class Function  implements java.io.Serializable {
      private String name;
      private String code;
      private String description;
-     private String page;
+     private String url_page;
      private String generatemenu;
      private Integer zindex;
      private Set roles = new HashSet(0);
@@ -49,7 +49,7 @@ public class Function  implements java.io.Serializable {
         this.name = name;
         this.code = code;
         this.description = description;
-        this.page = page;
+        this.url_page = page;
         this.generatemenu = generatemenu;
         this.zindex = zindex;
         this.roles = roles;
@@ -99,12 +99,16 @@ public class Function  implements java.io.Serializable {
         this.description = description;
     }
 
-    public String getPage() {
-        return this.page;
+    public String getUrl_page() {
+        return url_page;
     }
-    
-    public void setPage(String page) {
-        this.page = page;
+
+    public void setUrl_page(String url_page) {
+        this.url_page = url_page;
+    }
+
+    public void setpId(String pId) {
+        this.pId = pId;
     }
 
     public String getGeneratemenu() {

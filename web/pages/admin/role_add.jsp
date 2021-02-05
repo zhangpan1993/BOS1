@@ -67,6 +67,36 @@
 		
 		// 点击保存
 		$('#save').click(function(){
+			var treeObj = $.fn.zTree.getZTreeObj("functionTree");
+			var nodes = treeObj.getCheckNodes(true);
+			var ids = new Array();
+			if (nodes.length ==0){
+
+				$.messager.alert("tip","没有选择权限","error");
+				return;
+			}
+
+			for (var i =0;i < nodes.length;i++){
+				var id = nodes[i].id;
+				ids.push(id);
+			}
+
+			var idsStr = ids.join(",");
+
+			$("functionIds").val(idsStr);
+
+			alert(idsStr);
+
+			if (!$("#roleForm").form('validate')){
+
+				$.messager.alert("tip","表单数据不正确","error");
+
+				return;
+			}
+
+			$("#roleForm").submit();
+
+
 			location.href='${pageContext.request.contextPath}/page_admin_privilege.action';
 		});
 	});
@@ -103,6 +133,7 @@
 					<tr>
 						<td>授权</td>
 						<td>
+							<input id="functionIds" type="hidden"/>
 							<ul id="functionTree" class="ztree"></ul>
 						</td>
 					</tr>

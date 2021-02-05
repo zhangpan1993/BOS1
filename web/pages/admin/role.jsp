@@ -47,7 +47,10 @@
 					}
 				}           
 			],
-			url : '',
+			pagination : true,
+			pageList:[5,10,15],
+			pageSize:10,
+			url : '${pageContext.request.contextPath}/RoleAction_jsonlist.action',
 			columns : [[
 				{
 					field : 'id',

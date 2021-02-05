@@ -62,6 +62,13 @@
 			  {
 				  field : 'generateMenu',
 				  title : '是否生成菜单',
+				  formatter : function(data,row,index){
+				  	if (data=="1"){
+				  		return "生成";
+					}else{
+				  		return "不生成";
+					}
+				  },
 				  width : 200
 			  },  
 			  {
@@ -70,7 +77,7 @@
 				  width : 200
 			  },  
 			  {
-				  field : 'page',
+				  field : 'url_page',
 				  title : '路径',
 				  width : 200
 			  }
